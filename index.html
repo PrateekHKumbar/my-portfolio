@@ -45,7 +45,7 @@
     .hero-badge i { font-size: 0.55rem; color: var(--accent-emerald); }
     .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
     .hero h1 span { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 1.12rem; color: var(--text-muted); max-width: 760px; margin-bottom: 2rem; }
+    .hero p { font-size: 1.12rem; color: var(--text-muted); max-width: 780px; margin-bottom: 2rem; }
     .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
     /* Buttons */
@@ -54,13 +54,7 @@
     .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
     .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
     .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--text-muted); transform: translateY(-2px); }
-    .btn-sm { padding: 0.45rem 0.85rem; font-size: 0.82rem; border-radius: 6px; }
-
-    /* Impact Metrics Bar */
-    .metrics-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 2.5rem 0 0; width: 100%; }
-    .metric-card { background: rgba(17, 24, 39, 0.6); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; text-align: left; }
-    .metric-num { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--accent-cyan); }
-    .metric-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 6px; }
 
     /* Sections */
     section { padding: 80px 0; border-top: 1px solid var(--border-color); }
@@ -72,7 +66,6 @@
     /* Grid Layouts */
     .grid { display: grid; gap: 1.5rem; }
     .grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
     /* Cards */
     .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.75rem; transition: all 0.25s ease; display: flex; flex-direction: column; justify-content: space-between; }
@@ -97,6 +90,15 @@
     .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-pill { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem; color: var(--text-main); }
 
+    /* Certifications Grid with Badge Images */
+    .cert-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1.25rem; align-items: center; transition: all 0.25s ease; }
+    .cert-card:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-2px); }
+    .cert-badge-img { width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: rgba(255, 255, 255, 0.02); padding: 4px; border: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0; }
+    .cert-info { flex-grow: 1; }
+    .cert-title { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
+    .cert-org { color: var(--accent-purple); font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .cert-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+
     /* Timeline Items */
     .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
     .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
@@ -113,7 +115,8 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hero { padding-top: 110px; }
-      .timeline-item { flex-direction: column; }
+      .cert-card { flex-direction: column; align-items: flex-start; }
+      .timeline-item { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -146,36 +149,17 @@
         Electronics & Telecommunication Engineering undergraduate at <strong>Bangalore Institute of Technology</strong>. Specializing in hardware-software co-design, low-latency embedded firmware (ESP32/C++), silicon power profiling, cellular telemetry, and Python/FastAPI data pipelines.
       </p>
       
-      <!-- Resume Download & Contact Buttons -->
+      <!-- Resume Download & Social Buttons -->
       <div class="hero-btns">
         <a href="Prateek_Kumbar_Resume.pdf" target="_blank" class="btn btn-primary"><i class="fa-solid fa-microchip"></i> Hardware Resume</a>
         <a href="Prateek_H_K_Resume.pdf" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-file-code"></i> Software Resume</a>
         <a href="https://github.com/PrateekHKumbar" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
         <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-      </div>
-
-      <!-- Quantifiable Metrics Bar -->
-      <div class="metrics-bar">
-        <div class="metric-card">
-          <div class="metric-num">7.64 / 10</div>
-          <div class="metric-label">BIT Bengaluru BE CGPA</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">&lt; 100 ms</div>
-          <div class="metric-label">ISR Trigger Latency (2.5g)</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">40 - 240 MHz</div>
-          <div class="metric-label">Dynamic Voltage Scaling Tiers</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">7+ Credentials</div>
-          <div class="metric-label">Cisco, IBM, ISRO & Deloitte</div>
-        </div>
+        <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-award"></i> Credly Badges</a>
       </div>
     </section>
 
-    <!-- Technical Skills Matrix -->
+    <!-- Technical Capabilities Matrix -->
     <section id="skills">
       <div class="section-header">
         <h2 class="section-title"><i class="fa-solid fa-cpu"></i> Technical Capabilities Matrix</h2>
@@ -275,7 +259,7 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- Project 2 (Car Black Box with Report Link) -->
         <div class="card">
           <div>
             <div class="card-header">
@@ -297,6 +281,7 @@
             </div>
           </div>
           <div class="card-actions">
+            <a href="Car_Black_box.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> View Project Report PDF</a>
             <a href="https://github.com/PrateekHKumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
           </div>
         </div>
@@ -355,60 +340,94 @@
       </div>
     </section>
 
-    <!-- Professional Certifications -->
+    <!-- Verified Digital Credentials & Certifications -->
     <section id="certifications">
       <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Verified Certifications & Training</h2>
-        <p class="section-desc">Industry certifications in programming, databases, cybersecurity, and remote sensing technology.</p>
+        <h2 class="section-title"><i class="fa-solid fa-award"></i> Verified Credentials & Badges</h2>
+        <p class="section-desc">Digital badges and verified certificates issued by Cisco, IBM, Deloitte, and ISRO.</p>
       </div>
 
       <div class="grid grid-2">
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">Python Essentials 1</div>
-            <div class="timeline-org">Cisco Networking Academy</div>
+        <!-- Cisco Python Essentials 1 -->
+        <div class="cert-card">
+          <img src="Python_Essentials_1.png" alt="Cisco Python Badge" class="cert-badge-img">
+          <div class="cert-info">
+            <div class="cert-title">Python Essentials 1</div>
+            <div class="cert-org">Cisco Networking Academy</div>
+            <div class="cert-meta">Completed: Sep 27, 2026 | ID: 2442c6a5</div>
+            <div class="hero-btns">
+              <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Badge</a>
+              <a href="Cisco-Python_Essentials_1.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Sep 2026</div>
         </div>
 
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">SQL and Relational Databases 101</div>
-            <div class="timeline-org">IBM Cognitive Class</div>
+        <!-- Cisco Introduction to Cybersecurity -->
+        <div class="cert-card">
+          <img src="Introduction_to_Cybersecurity.png" alt="Cisco Cybersecurity Badge" class="cert-badge-img">
+          <div class="cert-info">
+            <div class="cert-title">Introduction to Cybersecurity</div>
+            <div class="cert-org">Cisco Networking Academy</div>
+            <div class="cert-meta">Completed: Sep 27, 2026 | ID: a1bbe3a8</div>
+            <div class="hero-btns">
+              <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Badge</a>
+              <a href="Cisco-Introduction_to_Cyber_Security.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Sep 2026</div>
         </div>
 
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">Introduction to Cybersecurity</div>
-            <div class="timeline-org">Cisco Networking Academy</div>
+        <!-- IBM Artificial Intelligence -->
+        <div class="cert-card">
+          <img src="Artificial_Intelligence.png" alt="IBM AI Badge" class="cert-badge-img">
+          <div class="cert-info">
+            <div class="cert-title">Getting Started with Artificial Intelligence</div>
+            <div class="cert-org">IBM SkillsBuild</div>
+            <div class="cert-meta">Issued: Mar 25, 2026 | Credly Verified</div>
+            <div class="hero-btns">
+              <a href="https://www.credly.com/badges/218a9e93-1ddf-4cfe-b744-b2f28e6d1f36" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify on Credly</a>
+              <a href="IBM-Artificial_Intelligence.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Sep 2026</div>
         </div>
 
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">Data Analytics & Forensic Simulation</div>
-            <div class="timeline-org">Deloitte (Forage)</div>
+        <!-- IBM SQL & Relational Databases 101 -->
+        <div class="cert-card">
+          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-database"></i></div>
+          <div class="cert-info">
+            <div class="cert-title">SQL and Relational Databases 101</div>
+            <div class="cert-org">IBM Skills Network / Cognitive Class</div>
+            <div class="cert-meta">Issued: Sep 27, 2026 | Course ID: DB0101EN</div>
+            <div class="hero-btns">
+              <a href="https://courses.cognitiveclass.ai/certificates/f79a2dfa5b5f40d2afdbbba472500080" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Online</a>
+              <a href="IBM-SQL%20%26%20Relational_Databases_101.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Jul 2026</div>
         </div>
 
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">Getting Started with Artificial Intelligence</div>
-            <div class="timeline-org">IBM SkillsBuild</div>
+        <!-- Deloitte Data Analytics -->
+        <div class="cert-card">
+          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <div class="cert-info">
+            <div class="cert-title">Data Analytics & Forensic Technology</div>
+            <div class="cert-org">Deloitte (Forage)</div>
+            <div class="cert-meta">Completed: July 11, 2026 | Code: CSTxbX8aP3vLKhFxd</div>
+            <div class="hero-btns">
+              <a href="Deloitte-Data_Analytics.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Mar 2026</div>
         </div>
 
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">Remote Sensing Technology Short Course</div>
-            <div class="timeline-org">Indian Institute of Remote Sensing (IIRS), ISRO</div>
+        <!-- ISRO Remote Sensing -->
+        <div class="cert-card">
+          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-satellite"></i></div>
+          <div class="cert-info">
+            <div class="cert-title">Remote Sensing Technology Course</div>
+            <div class="cert-org">Indian Institute of Remote Sensing (IIRS), ISRO</div>
+            <div class="cert-meta">Completed: August 2026</div>
+            <div class="hero-btns">
+              <a href="#" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+            </div>
           </div>
-          <div class="timeline-date">Aug 2026</div>
         </div>
       </div>
     </section>
@@ -416,12 +435,11 @@
     <!-- Education & Leadership -->
     <section id="leadership">
       <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Co-Curricular Leadership</h2>
-        <p class="section-desc">Academic background and student association governance.</p>
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Leadership</h2>
+        <p class="section-desc">Academic achievements and student organization leadership.</p>
       </div>
 
       <div class="timeline">
-        <!-- Education 1 -->
         <div class="timeline-item">
           <div>
             <div class="timeline-role">Bachelor of Engineering in Electronics & Telecommunication Engineering</div>
@@ -434,7 +452,6 @@
           <div class="timeline-date">2023 - 2027</div>
         </div>
 
-        <!-- Pre-University -->
         <div class="timeline-item">
           <div>
             <div class="timeline-role">Pre-University Course (PCMC)</div>
@@ -446,7 +463,6 @@
           <div class="timeline-date">2021 - 2023</div>
         </div>
 
-        <!-- Leadership Role -->
         <div class="timeline-item">
           <div>
             <div class="timeline-role">President</div>
@@ -467,6 +483,7 @@
       <div class="social-links">
         <a href="https://github.com/PrateekHKumbar" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" title="Credly Badges"><i class="fa-solid fa-award"></i></a>
         <a href="mailto:prateekkumbar207@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
       </div>
       <p style="color: var(--text-muted); margin-bottom: 0.4rem;">
