@@ -98,12 +98,32 @@
     .cert-org { color: var(--accent-purple); font-size: 0.88rem; margin-bottom: 0.25rem; }
     .cert-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.75rem; }
 
-    /* Timeline Items */
+    /* Timeline Items - Fixed Top-Right Date Alignment */
     .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
-    .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .timeline-item { 
+      background: var(--bg-card); 
+      border: 1px solid var(--border-color); 
+      border-radius: 12px; 
+      padding: 1.5rem; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: flex-start; 
+      gap: 1.5rem; 
+    }
+    .timeline-content { flex: 1; }
     .timeline-role { font-size: 1.05rem; font-weight: 600; }
     .timeline-org { color: var(--accent-purple); font-size: 0.92rem; }
-    .timeline-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-dim); background: rgba(255, 255, 255, 0.03); padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid var(--border-color); }
+    .timeline-date { 
+      font-family: var(--font-mono); 
+      font-size: 0.82rem; 
+      color: var(--text-dim); 
+      background: rgba(255, 255, 255, 0.03); 
+      padding: 0.25rem 0.65rem; 
+      border-radius: 4px; 
+      border: 1px solid var(--border-color); 
+      white-space: nowrap; 
+      flex-shrink: 0;
+    }
 
     /* Footer */
     footer { padding: 50px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-dim); font-size: 0.88rem; }
@@ -115,7 +135,7 @@
       .nav-links { display: none; }
       .hero { padding-top: 110px; }
       .cert-card { flex-direction: column; align-items: flex-start; }
-      .timeline-item { flex-direction: column; align-items: flex-start; }
+      .timeline-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
   </style>
 </head>
@@ -375,7 +395,7 @@
           </div>
         </div>
 
-        <!-- McKinsey Forward Program (Forward Learner) -->
+        <!-- McKinsey Forward Program -->
         <div class="cert-card">
           <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-chart-line"></i></div>
           <div class="cert-info">
@@ -439,21 +459,47 @@
       </div>
 
       <div class="timeline">
+        <!-- Education Entry -->
         <div class="timeline-item">
-          <div>
+          <div class="timeline-content">
             <div class="timeline-role">Bachelor of Engineering in Electronics & Telecommunication Engineering</div>
             <div class="timeline-org">Bangalore Institute of Technology (BIT), Bengaluru</div>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
               <strong>CGPA: 7.64 / 10.0</strong> | Expected Graduation: 2027<br>
               <em>Core Coursework:</em> Embedded Systems, Microcontrollers, IoT Architecture, Analog & Digital Circuits, DBMS, Operating Systems, Signal Processing.<br>
-              <em>Industry Visits:</em> Visitor at <strong>electronica India 2026</strong> (Bangalore International Exhibition Centre) and <strong>IISc Open Day 2026</strong>.
+              <em>Industry Exposure:</em> Attended <strong>electronica India 2026</strong> (BIEC), <strong>IISc Open Day 2026</strong>, and <strong>Bengaluru INDIA NANO 2026</strong>.
             </p>
           </div>
           <div class="timeline-date">2023 - 2027</div>
         </div>
 
+        <!-- TESA Club Leadership -->
         <div class="timeline-item">
-          <div>
+          <div class="timeline-content">
+            <div class="timeline-role">President</div>
+            <div class="timeline-org">Telecommunication Engineering Students Association (TESA)</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+              Led planning, organization, and operations for all annual departmental student activities, sports tournaments, and student events.
+            </p>
+          </div>
+          <div class="timeline-date">2026 - Present</div>
+        </div>
+
+        <!-- INCEPTRA Student Coordinator -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-role">Student Coordinator</div>
+            <div class="timeline-org">INCEPTRA (Department Technical Exhibition & Ideathon)</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+              Coordinated event logistics, student registrations, and project presentation schedules for the national-level project exhibition and ideathon.
+            </p>
+          </div>
+          <div class="timeline-date">Apr 2026</div>
+        </div>
+
+        <!-- Pre-University -->
+        <div class="timeline-item">
+          <div class="timeline-content">
             <div class="timeline-role">Pre-University Course (PCMC)</div>
             <div class="timeline-org">BLDEA's Sri B M Patil PU College, Vijayapur</div>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
@@ -461,17 +507,6 @@
             </p>
           </div>
           <div class="timeline-date">2021 - 2023</div>
-        </div>
-
-        <div class="timeline-item">
-          <div>
-            <div class="timeline-role">President</div>
-            <div class="timeline-org">Telecommunication Engineering Students Association (TESA)</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
-              Directing student association operations, cross-functional technical committees, and department student databases. Coordinated logistics for <strong>INCEPTRA 2026</strong> (National-level Ideathon and Technical Poster Exhibition) and student industrial visits (e.g. Bengaluru INDIA NANO 2026).
-            </p>
-          </div>
-          <div class="timeline-date">2026 - Present</div>
         </div>
       </div>
     </section>
