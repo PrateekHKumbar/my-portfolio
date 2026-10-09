@@ -1,520 +1,460 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prateek H Kumbar | Embedded Systems & Software Engineer</title>
-  
-  <!-- Typography & Iconography -->
+  <meta name="description" content="Prateek H Kumbar, an Electronics & Telecommunication undergraduate at BIT Bengaluru. ESP32 firmware, power profiling, 4G LTE telemetry and Python/FastAPI backends. Open for 6-month internships from Jan 2027.">
+  <meta name="theme-color" content="#0a0e17">
+  <link rel="canonical" href="https://prateekhkumbar.github.io/my-portfolio/">
+
+  <!-- Social previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Prateek H Kumbar | Embedded Systems & Software Engineer">
+  <meta property="og:description" content="ESP32 firmware, power profiling, IoT telemetry and FastAPI backends. Open for internships from Jan 2027.">
+  <meta property="og:url" content="https://prateekhkumbar.github.io/my-portfolio/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2304101c'%3EPK%3C/text%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-main: #0a0e17;
-      --bg-card: #111827;
-      --bg-card-hover: #1f2937;
-      --border-color: #1e293b;
-      --accent-cyan: #38bdf8;
-      --accent-purple: #818cf8;
-      --accent-emerald: #34d399;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --font-sans: 'Inter', sans-serif;
-      --font-mono: 'Fira Code', monospace;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-    body { background-color: var(--bg-main); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
-
-    /* Navigation */
-    header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(10, 14, 23, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-    nav { display: flex; justify-content: flex-end; align-items: center; height: 72px; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent-cyan); }
-
-    /* Hero Section */
-    .hero { padding: 160px 0 70px; display: flex; flex-direction: column; align-items: flex-start; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 20px; color: var(--accent-cyan); font-size: 0.85rem; font-family: var(--font-mono); margin-bottom: 1.5rem; }
-    .hero-badge i { font-size: 0.55rem; color: var(--accent-emerald); }
-    .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 1.12rem; color: var(--text-muted); max-width: 780px; margin-bottom: 2rem; }
-    .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-
-    /* Buttons */
-    .btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.72rem 1.3rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.2s ease; cursor: pointer; }
-    .btn-primary { background: var(--accent-cyan); color: #000; }
-    .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
-    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-color); }
-    .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--text-muted); transform: translateY(-2px); }
-    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 6px; }
-
-    /* Sections */
-    section { padding: 80px 0; border-top: 1px solid var(--border-color); }
-    .section-header { margin-bottom: 2.5rem; }
-    .section-title { font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 0.75rem; }
-    .section-title i { color: var(--accent-cyan); font-size: 1.3rem; }
-    .section-desc { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.4rem; }
-
-    /* Grid Layouts */
-    .grid { display: grid; gap: 1.5rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-
-    /* Cards */
-    .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.75rem; transition: all 0.25s ease; display: flex; flex-direction: column; justify-content: space-between; }
-    .card:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-3px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5); }
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(56, 189, 248, 0.08); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid rgba(56, 189, 248, 0.15); }
-    .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.6rem; }
-    .card-subtitle { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple); margin-bottom: 0.8rem; }
-    .card-bullet-list { list-style: none; margin-bottom: 1.25rem; flex-grow: 1; }
-    .card-bullet-list li { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.55rem; position: relative; padding-left: 1.25rem; }
-    .card-bullet-list li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-cyan); }
-    
-    .card-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-
-    /* Tech Tags */
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
-    .tag { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; background: rgba(255, 255, 255, 0.03); border-radius: 4px; color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.15); }
-
-    /* Skill Categories */
-    .skill-category { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; }
-    .skill-category h3 { font-size: 1rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-pill { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem; color: var(--text-main); }
-
-    /* Certifications Grid with Badge Images */
-    .cert-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; display: flex; gap: 1.25rem; align-items: center; transition: all 0.25s ease; }
-    .cert-card:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-2px); }
-    .cert-badge-img { width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: rgba(255, 255, 255, 0.02); padding: 4px; border: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0; }
-    .cert-info { flex-grow: 1; }
-    .cert-title { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
-    .cert-org { color: var(--accent-purple); font-size: 0.88rem; margin-bottom: 0.25rem; }
-    .cert-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.75rem; }
-
-    /* Timeline Items - Top-Right Date Alignment */
-    .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
-    .timeline-item { 
-      background: var(--bg-card); 
-      border: 1px solid var(--border-color); 
-      border-radius: 12px; 
-      padding: 1.5rem; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: flex-start; 
-      gap: 1.5rem; 
-    }
-    .timeline-content { flex: 1; }
-    .timeline-role { font-size: 1.05rem; font-weight: 600; }
-    .timeline-org { color: var(--accent-purple); font-size: 0.92rem; }
-    .timeline-date { 
-      font-family: var(--font-mono); 
-      font-size: 0.82rem; 
-      color: var(--text-dim); 
-      background: rgba(255, 255, 255, 0.03); 
-      padding: 0.25rem 0.65rem; 
-      border-radius: 4px; 
-      border: 1px solid var(--border-color); 
-      white-space: nowrap; 
-      flex-shrink: 0;
-    }
-
-    /* Footer */
-    footer { padding: 50px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-dim); font-size: 0.88rem; }
-    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.2rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--accent-cyan); }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero { padding-top: 110px; }
-      .cert-card { flex-direction: column; align-items: flex-start; }
-      .timeline-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.documentElement.classList.add('js');
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  </script>
 </head>
 <body>
+  <a href="#about" class="skip-link">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
 
-  <!-- Navigation Bar -->
   <header>
     <div class="container">
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Capabilities</a></li>
-          <li><a href="#projects">Engineering Projects</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#leadership">Leadership</a></li>
-        </ul>
+      <nav aria-label="Main">
+        <a href="#top" class="logo" aria-label="Prateek H Kumbar, home">
+          <span class="logo-mark">PK</span>
+          <span class="logo-text">Prateek H Kumbar</span>
+        </a>
+        <div class="nav-right">
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Credentials</a></li>
+            <li><a href="#leadership">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme"></button>
+          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><i class="fa-solid fa-bars"></i></button>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-      <div class="hero-badge">
-        <i class="fa-solid fa-circle"></i> Open for 6-Month Engineering Internships (Jan 2027)
-      </div>
-      <h1>Hi, I'm <span>Prateek H Kumbar</span></h1>
-      <p>
-        Electronics & Telecommunication Engineering undergraduate at <strong>Bangalore Institute of Technology</strong>. Specializing in hardware-software co-design, low-latency embedded firmware (ESP32/C++), silicon power profiling, cellular telemetry, and Python/FastAPI data pipelines.
-      </p>
-      
-      <!-- Resume Download & Social Buttons -->
-      <div class="hero-btns">
-        <a href="Prateek_Kumbar_Resume.pdf" target="_blank" class="btn btn-primary"><i class="fa-solid fa-microchip"></i> Hardware Resume</a>
-        <a href="Prateek_H_K_Resume.pdf" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-file-code"></i> Software Resume</a>
-        <a href="https://github.com/PrateekHKumbar" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-award"></i> Credly Badges</a>
-      </div>
-    </section>
-
-    <!-- Technical Capabilities Matrix -->
-    <section id="skills">
-      <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-cpu"></i> Technical Capabilities Matrix</h2>
-        <p class="section-desc">Full-stack technical foundation spanning silicon hardware, firmware execution, and data backend systems.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <div class="skill-category">
-          <h3><i class="fa-solid fa-microchip"></i> Microcontrollers & Hardware Prototyping</h3>
-          <div class="skill-list">
-            <span class="skill-pill">ESP32 / ESP32-CAM</span>
-            <span class="skill-pill">Arduino Uno (ATmega328P)</span>
-            <span class="skill-pill">ARM Cortex-M (Fundamentals)</span>
-            <span class="skill-pill">A7670C 4G LTE Telemetry</span>
-            <span class="skill-pill">Neo-6M GPS Receiver</span>
-            <span class="skill-pill">MPU6050 Accelerometer</span>
-            <span class="skill-pill">LM2596 Buck Converters</span>
-            <span class="skill-pill">Breadboarding & Soldering</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3><i class="fa-solid fa-network-wired"></i> Protocols, Interfacing & Firmware</h3>
-          <div class="skill-list">
-            <span class="skill-pill">I²C / SPI / UART</span>
-            <span class="skill-pill">I²S / GPIO / ADC / PWM</span>
-            <span class="skill-pill">Timers & ISR Routines</span>
-            <span class="skill-pill">Embedded C / Embedded C++</span>
-            <span class="skill-pill">Hayes AT Commands</span>
-            <span class="skill-pill">MQTT / TCP/IP / HTTP</span>
-            <span class="skill-pill">FreeRTOS (Basics)</span>
-            <span class="skill-pill">Wi-Fi (802.11 b/g/n)</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3><i class="fa-solid fa-terminal"></i> Software, Data & Backend Stack</h3>
-          <div class="skill-list">
-            <span class="skill-pill">Python (Pandas, NumPy, Matplotlib)</span>
-            <span class="skill-pill">SQL (PostgreSQL, MySQL, SQLite)</span>
-            <span class="skill-pill">FastAPI & Uvicorn</span>
-            <span class="skill-pill">Pydantic / REST API Design</span>
-            <span class="skill-pill">C / C++ (OOP & Data Structures)</span>
-            <span class="skill-pill">Exploratory Data Analysis (EDA)</span>
-            <span class="skill-pill">Time-Series & Telemetry Logs</span>
-            <span class="skill-pill">Linux / Bash Fundamentals</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3><i class="fa-solid fa-wrench"></i> Simulation, EDA & Engineering Tools</h3>
-          <div class="skill-list">
-            <span class="skill-pill">LTspice / Proteus</span>
-            <span class="skill-pill">MATLAB & Simulink</span>
-            <span class="skill-pill">PSpice Circuit Analysis</span>
-            <span class="skill-pill">Keil µVision</span>
-            <span class="skill-pill">Arduino IDE / ESP-IDF</span>
-            <span class="skill-pill">Digital Multimeter & Oscilloscopes</span>
-            <span class="skill-pill">Git / GitHub Version Control</span>
-            <span class="skill-pill">LaTeX Document Formatting</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Engineering Projects -->
-    <section id="projects">
-      <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Featured Engineering Projects</h2>
-        <p class="section-desc">Hardware power optimization, low-latency automotive safety pipelines, and REST backend analytics.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <!-- Project 1 -->
-        <div class="card">
+  <main id="top">
+    <!-- Hero -->
+    <div class="hero-wrap">
+      <div class="container">
+        <section class="hero" id="about-hero">
           <div>
-            <div class="card-header">
-              <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
-            </div>
-            <h3 class="card-title">Adaptive Voltage Scaling & Power Profiling</h3>
-            <div class="card-subtitle">ESP32 | Embedded C | Python (Pandas/NumPy) | 01/2026 - Present</div>
-            <ul class="card-bullet-list">
-              <li>Engineered empirical power profiling testbed characterizing silicon-level energy draw verifying dynamic scaling models ($P_{dynamic} \propto V_{DD}^2 \cdot f$).</li>
-              <li>Programmed firmware dynamically toggling MCU clock speeds across 4 tiers (40 MHz to 240 MHz) while stepping supply voltages from 3.3V to 3.0V.</li>
-              <li>Systematically profiled current drain across I2C, SPI, UART, and Wi-Fi bursts; created multi-dimensional telemetry datasets for future TinyML workload optimization.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">ESP32</span>
-              <span class="tag">Power Profiling</span>
-              <span class="tag">Dynamic Voltage Scaling</span>
-              <span class="tag">Embedded C</span>
-              <span class="tag">Python EDA</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/PrateekHKumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
-          </div>
-        </div>
-
-        <!-- Project 2 (Car Black Box) -->
-        <div class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon"><i class="fa-solid fa-car"></i></div>
-            </div>
-            <h3 class="card-title">IoT Wireless Automotive Safety Black Box</h3>
-            <div class="card-subtitle">ATmega328P / ESP32 | 4G LTE | GPS | Embedded C++ | 08/2025 - 12/2025</div>
-            <ul class="card-bullet-list">
-              <li>Developed standalone automotive safety black box for vehicular collision and fire telemetry with zero smartphone or external pairing dependency.</li>
-              <li>Implemented Euclidean norm acceleration vectors $\sqrt{a_x^2 + a_y^2 + a_z^2}$ filtering noise to trigger an Interrupt Service Routine (ISR) at 2.5g in under 100 ms.</li>
-              <li>Integrated Neo-6M GPS (locking in &lt; 42s) and automated Hayes AT command payloads over 4G LTE, dispatching emergency SMS Google Maps location links in under 8s.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">ATmega328P</span>
-              <span class="tag">A7670C 4G LTE</span>
-              <span class="tag">Neo-6M GPS</span>
-              <span class="tag">MPU-6050</span>
-              <span class="tag">ISR Logic</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/PrateekHKumbar/car-blackbox-iot" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
-            <a href="Car_Black_Box.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
-          </div>
-        </div>
-
-        <!-- Project 3 (Job Matcher API) -->
-        <div class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
-            </div>
-            <h3 class="card-title">Job Matcher & Application Tracker REST API</h3>
-            <div class="card-subtitle">FastAPI | Python | Pydantic | SQLite | 09/2026 - Present</div>
-            <ul class="card-bullet-list">
-              <li>Developed RESTful backend microservice utilizing FastAPI, SQLite, and Pydantic v2 for automated resume keyword vector alignment and scoring algorithms.</li>
-              <li>Implemented transactional CRUD application tracking pipeline (`/api/jobs`) with HTTP response codes, error handling, and search filters.</li>
-              <li>Engineered live analytics calculation endpoint (`/api/stats`) computing total application volume, conversion ratios, and status breakdown metrics.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">FastAPI</span>
-              <span class="tag">Python</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">REST API</span>
-              <span class="tag">Pydantic</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/PrateekHKumbar/job-matcher-api" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
-            <a href="Job_Matcher.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
-          </div>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-            </div>
-            <h3 class="card-title">Forensic Data Analytics & Anomaly Investigation</h3>
-            <div class="card-subtitle">Deloitte Job Simulation (Forage) | SQL | Relational DBs | 07/2026</div>
-            <ul class="card-bullet-list">
-              <li>Conducted forensic data analysis on multi-table relational databases to identify transaction anomalies, fraudulent patterns, and data discrepancies.</li>
-              <li>Formulated complex SQL queries utilizing multi-table joins, subqueries, and window functions to extract complete audit trails and validate data integrity.</li>
-              <li>Synthesized quantitative findings into structured executive summaries and analytical risk dashboards for stakeholder reporting.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">SQL</span>
-              <span class="tag">Forensic Tech</span>
-              <span class="tag">Data Analytics</span>
-              <span class="tag">Audit Trails</span>
-              <span class="tag">Deloitte</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/PrateekHKumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Case Study</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Verified Digital Credentials & Certifications -->
-    <section id="certifications">
-      <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-award"></i> Verified Credentials & Badges</h2>
-        <p class="section-desc">Digital badges and verified certificates issued by Cisco, IBM, Deloitte, and McKinsey.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <!-- Cisco Python Essentials 1 -->
-        <div class="cert-card">
-          <img src="Python_Essentials_1.png" alt="Cisco Python Badge" class="cert-badge-img">
-          <div class="cert-info">
-            <div class="cert-title">Python Essentials 1</div>
-            <div class="cert-org">Cisco Networking Academy</div>
-            <div class="cert-meta">Completed: Sep 27, 2026 | ID: 2442c6a5</div>
-            <div class="hero-btns">
-              <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Badge</a>
-              <a href="Cisco-Python_Essentials_1.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cisco Introduction to Cybersecurity -->
-        <div class="cert-card">
-          <img src="Introduction_to_Cybersecurity.png" alt="Cisco Cybersecurity Badge" class="cert-badge-img">
-          <div class="cert-info">
-            <div class="cert-title">Introduction to Cybersecurity</div>
-            <div class="cert-org">Cisco Networking Academy</div>
-            <div class="cert-meta">Completed: Sep 27, 2026 | ID: a1bbe3a8</div>
-            <div class="hero-btns">
-              <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Badge</a>
-              <a href="Cisco-Introduction_to_Cyber_Security.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- McKinsey Forward Program -->
-        <div class="cert-card">
-          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-chart-line"></i></div>
-          <div class="cert-info">
-            <div class="cert-title">McKinsey Forward Program</div>
-            <div class="cert-org">McKinsey & Company</div>
-            <div class="cert-meta">Role: Forward Learner | Selected: Sep 2026</div>
-            <div class="hero-btns">
-              <span class="btn btn-secondary btn-sm" style="cursor: default;"><i class="fa-solid fa-user-check"></i> Program Participant</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- IBM Artificial Intelligence -->
-        <div class="cert-card">
-          <img src="Artificial_Intelligence.png" alt="IBM AI Badge" class="cert-badge-img">
-          <div class="cert-info">
-            <div class="cert-title">Getting Started with Artificial Intelligence</div>
-            <div class="cert-org">IBM SkillsBuild</div>
-            <div class="cert-meta">Issued: Mar 25, 2026 | Credly Verified</div>
-            <div class="hero-btns">
-              <a href="https://www.credly.com/badges/218a9e93-1ddf-4cfe-b744-b2f28e6d1f36" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify on Credly</a>
-              <a href="IBM-Artificial_Intelligence.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- IBM SQL & Relational Databases 101 -->
-        <div class="cert-card">
-          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-database"></i></div>
-          <div class="cert-info">
-            <div class="cert-title">SQL and Relational Databases 101</div>
-            <div class="cert-org">IBM Skills Network / Cognitive Class</div>
-            <div class="cert-meta">Issued: Sep 27, 2026 | Course ID: DB0101EN</div>
-            <div class="hero-btns">
-              <a href="https://courses.cognitiveclass.ai/certificates/f79a2dfa5b5f40d2afdbbba472500080" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Online</a>
-              <a href="IBM-SQL%20%26%20Relational_Databases_101.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deloitte Data Analytics -->
-        <div class="cert-card">
-          <div class="card-icon" style="width:70px; height:70px; font-size: 1.8rem; flex-shrink: 0;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-          <div class="cert-info">
-            <div class="cert-title">Data Analytics & Forensic Technology</div>
-            <div class="cert-org">Deloitte (Forage)</div>
-            <div class="cert-meta">Completed: July 11, 2026 | Code: CSTxbX8aP3vLKhFxd</div>
-            <div class="hero-btns">
-              <a href="Deloitte-Data_Analytics.pdf" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education & Leadership -->
-    <section id="leadership">
-      <div class="section-header">
-        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Leadership</h2>
-        <p class="section-desc">Academic achievements, industry visits, and student organization leadership.</p>
-      </div>
-
-      <div class="timeline">
-        <!-- 1. BIT College Entry -->
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <div class="timeline-role">Bachelor of Engineering in Electronics & Telecommunication Engineering</div>
-            <div class="timeline-org">Bangalore Institute of Technology (BIT), Bengaluru</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
-              <strong>CGPA: 7.64 / 10.0</strong> | Expected Graduation: 2027<br>
-              <em>Core Coursework:</em> Embedded Systems, Microcontrollers, IoT Architecture, Analog & Digital Circuits, DBMS, Operating Systems, Signal Processing.<br>
-              <em>Industry Exposure:</em> Attended <strong>electronica India 2026</strong> (BIEC), <strong>IISc Open Day 2026</strong>, and <strong>Bengaluru INDIA NANO 2026</strong>.
+            <div class="hero-badge"><span class="pulse-dot"></span> Open for 6-Month Engineering Internships (Jan 2027)</div>
+            <h1>Hi, I'm <span class="grad">Prateek H Kumbar</span></h1>
+            <div class="typing" aria-live="off"><span id="typed"></span><span class="cursor"></span></div>
+            <p class="hero-copy">
+              Electronics & Telecommunication Engineering undergraduate at <strong>Bangalore Institute of Technology</strong>. Specializing in hardware-software co-design, low-latency embedded firmware (ESP32/C++), silicon power profiling, cellular telemetry, and Python/FastAPI data pipelines.
             </p>
+            <div class="hero-btns">
+              <a href="Prateek_Kumbar_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary" title="Resume tailored for embedded / hardware roles"><i class="fa-solid fa-microchip"></i> Hardware Resume</a>
+              <a href="Prateek_H_K_Resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary" title="Resume tailored for software / backend roles"><i class="fa-solid fa-file-code"></i> Software Resume</a>
+              <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+              <div class="hero-social">
+                <a class="icon-btn" href="https://github.com/PrateekHKumbar" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a class="icon-btn" href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a class="icon-btn" href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" rel="noopener" aria-label="Credly badges"><i class="fa-solid fa-award"></i></a>
+              </div>
+            </div>
           </div>
-          <div class="timeline-date">2023 - 2027</div>
-        </div>
 
-        <!-- 2. PUC College Entry -->
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <div class="timeline-role">Pre-University Course (PCMC)</div>
-            <div class="timeline-org">BLDEA's Sri B M Patil PU College, Vijayapur</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
-              <strong>PUC Score: 94.3%</strong> | Class X: 90.88%
-            </p>
+          <!-- PLACEHOLDER: replace the .avatar-ph block with <img src="profile.jpg" alt="Prateek H Kumbar"> -->
+          <div class="avatar-wrap" aria-hidden="false">
+            <div class="avatar-ring"></div>
+            <div class="avatar">
+              <div class="avatar-ph"><div class="initials grad">PK</div><small>profile photo here</small></div>
+            </div>
+            <div class="float-chip c1"><i class="fa-solid fa-microchip"></i> ESP32</div>
+            <div class="float-chip c2"><i class="fa-solid fa-tower-cell"></i> 4G LTE</div>
+            <div class="float-chip c3"><i class="fa-brands fa-python"></i> FastAPI</div>
           </div>
-          <div class="timeline-date">2021 - 2023</div>
-        </div>
+        </section>
 
-        <!-- 3. Combined Scaled-Down TESA & INCEPTRA Leadership Box -->
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <div class="timeline-role">Departmental Leadership & Coordination</div>
-            <div class="timeline-org">Telecommunication Engineering Department, BIT</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
-              Served as <strong>President (TESA)</strong> managing annual departmental student events, sports activities, and gatherings; served as <strong>Student Coordinator</strong> managing logistics and registrations for <strong>INCEPTRA 2026</strong> (Technical Exhibition & Ideathon).
-            </p>
-          </div>
-          <div class="timeline-date">2026 - Present</div>
+        <div class="stats reveal">
+          <div class="stat"><div class="stat-num"><span data-count="4">4</span></div><div class="stat-label">Engineering projects</div></div>
+          <div class="stat"><div class="stat-num"><span data-count="5">5</span></div><div class="stat-label">Verified certifications</div></div>
+          <div class="stat"><div class="stat-num"><span data-count="240" data-suffix=" MHz">240 MHz</span></div><div class="stat-label">Clock range profiled (from 40 MHz)</div></div>
+          <div class="stat"><div class="stat-num">&lt;<span data-count="100" data-suffix=" ms">100 ms</span></div><div class="stat-label">Collision detection latency</div></div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="container">
+      <!-- About -->
+      <section class="block" id="about">
+        <div class="section-header reveal">
+          <div class="eyebrow">// 01 about</div>
+          <h2 class="section-title"><i class="fa-solid fa-user"></i> About Me</h2>
+        </div>
+        <div class="about">
+          <div class="reveal">
+            <!-- PLACEHOLDER COPY: rewrite in your own voice -->
+            <p>I'm a third-year E&TC student who likes working where <strong>hardware meets software</strong>: the point where a line of firmware turns into milliamps, milliseconds and a real-world action.</p>
+            <p>My projects range from measuring how <strong>voltage and clock scaling</strong> change an ESP32's energy draw, to building a <strong>standalone crash-alert black box</strong> that texts a live location over 4G, to writing <strong>FastAPI services</strong> that track and score job applications.</p>
+            <p>I'm looking for a <strong>6-month engineering internship from January 2027</strong> in embedded systems, IoT or backend/data roles, where I can ship firmware and learn from experienced engineers.</p>
+          </div>
+          <ul class="focus-list reveal">
+            <li><i class="fa-solid fa-bolt"></i><div><b>Low-power embedded</b><span>Clock/voltage scaling and current profiling</span></div></li>
+            <li><i class="fa-solid fa-tower-cell"></i><div><b>Connected devices</b><span>GPS, 4G LTE, MQTT and Wi-Fi telemetry</span></div></li>
+            <li><i class="fa-solid fa-server"></i><div><b>Data & backend</b><span>Python, SQL and REST APIs</span></div></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="block" id="skills">
+        <div class="section-header reveal">
+          <div class="eyebrow">// 02 skills</div>
+          <h2 class="section-title"><i class="fa-solid fa-microchip"></i> Technical Capabilities</h2>
+          <p class="section-desc">Full-stack technical foundation spanning silicon hardware, firmware execution, and data backend systems.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="skill-category reveal">
+            <h3><i class="fa-solid fa-microchip"></i> Microcontrollers & Hardware Prototyping</h3>
+            <div class="skill-list">
+              <span class="skill-pill">ESP32 / ESP32-CAM</span>
+              <span class="skill-pill">Arduino Uno (ATmega328P)</span>
+              <span class="skill-pill">ARM Cortex-M (Fundamentals)</span>
+              <span class="skill-pill">A7670C 4G LTE Telemetry</span>
+              <span class="skill-pill">Neo-6M GPS Receiver</span>
+              <span class="skill-pill">MPU6050 Accelerometer</span>
+              <span class="skill-pill">LM2596 Buck Converters</span>
+              <span class="skill-pill">Breadboarding & Soldering</span>
+            </div>
+          </div>
+
+          <div class="skill-category reveal">
+            <h3><i class="fa-solid fa-network-wired"></i> Protocols, Interfacing & Firmware</h3>
+            <div class="skill-list">
+              <span class="skill-pill">I²C / SPI / UART</span>
+              <span class="skill-pill">I²S / GPIO / ADC / PWM</span>
+              <span class="skill-pill">Timers & ISR Routines</span>
+              <span class="skill-pill">Embedded C / Embedded C++</span>
+              <span class="skill-pill">Hayes AT Commands</span>
+              <span class="skill-pill">MQTT / TCP/IP / HTTP</span>
+              <span class="skill-pill">FreeRTOS (Basics)</span>
+              <span class="skill-pill">Wi-Fi (802.11 b/g/n)</span>
+            </div>
+          </div>
+
+          <div class="skill-category reveal">
+            <h3><i class="fa-solid fa-terminal"></i> Software, Data & Backend Stack</h3>
+            <div class="skill-list">
+              <span class="skill-pill">Python (Pandas, NumPy, Matplotlib)</span>
+              <span class="skill-pill">SQL (PostgreSQL, MySQL, SQLite)</span>
+              <span class="skill-pill">FastAPI & Uvicorn</span>
+              <span class="skill-pill">Pydantic / REST API Design</span>
+              <span class="skill-pill">C / C++ (OOP & Data Structures)</span>
+              <span class="skill-pill">Exploratory Data Analysis (EDA)</span>
+              <span class="skill-pill">Time-Series & Telemetry Logs</span>
+              <span class="skill-pill">Linux / Bash Fundamentals</span>
+            </div>
+          </div>
+
+          <div class="skill-category reveal">
+            <h3><i class="fa-solid fa-wrench"></i> Simulation, EDA & Engineering Tools</h3>
+            <div class="skill-list">
+              <span class="skill-pill">LTspice / Proteus</span>
+              <span class="skill-pill">MATLAB & Simulink</span>
+              <span class="skill-pill">PSpice Circuit Analysis</span>
+              <span class="skill-pill">Keil µVision</span>
+              <span class="skill-pill">Arduino IDE / ESP-IDF</span>
+              <span class="skill-pill">Digital Multimeter & Oscilloscopes</span>
+              <span class="skill-pill">Git / GitHub Version Control</span>
+              <span class="skill-pill">LaTeX Document Formatting</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="block" id="projects">
+        <div class="section-header reveal">
+          <div class="eyebrow">// 03 projects</div>
+          <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Featured Engineering Projects</h2>
+          <p class="section-desc">Hardware power optimization, low-latency automotive safety pipelines, and REST backend analytics.</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true" type="button">All</button>
+          <button class="filter-btn" data-filter="hardware" aria-pressed="false" type="button">Hardware</button>
+          <button class="filter-btn" data-filter="software" aria-pressed="false" type="button">Software</button>
+          <button class="filter-btn" data-filter="data" aria-pressed="false" type="button">Data</button>
+        </div>
+
+        <div class="grid grid-2">
+          <!-- Project 1 -->
+          <article class="card reveal" data-cat="hardware data">
+            <!-- PLACEHOLDER: swap .ph for <img src="assets/power-profile.png" alt="..."> (e.g. current vs clock plot) -->
+            <div class="card-media"><div class="ph"><i class="fa-solid fa-bolt"></i><small>photo / power-profile plot</small></div><span class="status-chip">in progress</span></div>
+            <div class="card-body">
+              <h3 class="card-title">Adaptive Voltage Scaling & Power Profiling</h3>
+              <div class="card-subtitle">ESP32 | Embedded C | Python (Pandas/NumPy) | 01/2026 - Present</div>
+              <ul class="card-bullet-list">
+                <li>Engineered empirical power profiling testbed characterizing silicon-level energy draw, verifying dynamic scaling models (<span class="math">P<sub>dynamic</sub> ∝ V<sub>DD</sub><sup>2</sup> · f</span>).</li>
+                <li>Programmed firmware dynamically toggling MCU clock speeds across 4 tiers (40 MHz to 240 MHz) while stepping supply voltages from 3.3V to 3.0V.</li>
+                <li>Systematically profiled current drain across I2C, SPI, UART, and Wi-Fi bursts; created multi-dimensional telemetry datasets for future TinyML workload optimization.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">ESP32</span><span class="tag">Power Profiling</span><span class="tag">Dynamic Voltage Scaling</span><span class="tag">Embedded C</span><span class="tag">Python EDA</span>
+              </div>
+              <div class="card-actions">
+                <!-- TODO: point to the real repo once it is published -->
+                <span class="btn btn-secondary btn-sm" aria-disabled="true"><i class="fa-brands fa-github"></i> Repository coming soon</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card reveal" data-cat="hardware">
+            <!-- PLACEHOLDER: swap .ph for a photo of the black box hardware -->
+            <div class="card-media"><div class="ph"><i class="fa-solid fa-car-burst"></i><small>hardware photo / demo GIF</small></div><span class="status-chip">completed</span></div>
+            <div class="card-body">
+              <h3 class="card-title">IoT Wireless Automotive Safety Black Box</h3>
+              <div class="card-subtitle">ATmega328P / ESP32 | 4G LTE | GPS | Embedded C++ | 08/2025 - 12/2025</div>
+              <ul class="card-bullet-list">
+                <li>Developed standalone automotive safety black box for vehicular collision and fire telemetry with zero smartphone or external pairing dependency.</li>
+                <li>Implemented Euclidean norm acceleration vectors (<span class="math">√(a<sub>x</sub><sup>2</sup> + a<sub>y</sub><sup>2</sup> + a<sub>z</sub><sup>2</sup>)</span>) filtering noise to trigger an Interrupt Service Routine (ISR) at 2.5g in under 100 ms.</li>
+                <li>Integrated Neo-6M GPS (locking in &lt; 42s) and automated Hayes AT command payloads over 4G LTE, dispatching emergency SMS Google Maps location links in under 8s.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">ATmega328P</span><span class="tag">A7670C 4G LTE</span><span class="tag">Neo-6M GPS</span><span class="tag">MPU-6050</span><span class="tag">ISR Logic</span>
+              </div>
+              <div class="card-actions">
+                <a href="https://github.com/PrateekHKumbar/car-blackbox-iot" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
+                <a href="Car_Black_Box.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card reveal" data-cat="software">
+            <!-- PLACEHOLDER: swap .ph for a screenshot of the app / FastAPI /docs page -->
+            <div class="card-media"><div class="ph"><i class="fa-solid fa-gears"></i><small>app screenshot / API docs</small></div><span class="status-chip">in progress</span></div>
+            <div class="card-body">
+              <h3 class="card-title">Job Matcher & Application Tracker REST API</h3>
+              <div class="card-subtitle">FastAPI | Python | Pydantic | SQLite | 09/2026 - Present</div>
+              <ul class="card-bullet-list">
+                <li>Developed RESTful backend microservice utilizing FastAPI, SQLite, and Pydantic v2 for automated resume keyword vector alignment and scoring algorithms.</li>
+                <li>Implemented transactional CRUD application tracking pipeline (<code>/api/jobs</code>) with HTTP response codes, error handling, and search filters.</li>
+                <li>Engineered live analytics calculation endpoint (<code>/api/stats</code>) computing total application volume, conversion ratios, and status breakdown metrics.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">REST API</span><span class="tag">Pydantic</span>
+              </div>
+              <div class="card-actions">
+                <a href="https://github.com/PrateekHKumbar/job-matcher-api" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> Repository</a>
+                <a href="Job_Matcher.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Technical Report</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="card reveal" data-cat="data">
+            <!-- PLACEHOLDER: swap .ph for a dashboard / query screenshot -->
+            <div class="card-media"><div class="ph"><i class="fa-solid fa-magnifying-glass-chart"></i><small>dashboard / query screenshot</small></div><span class="status-chip">virtual experience</span></div>
+            <div class="card-body">
+              <h3 class="card-title">Forensic Data Analytics & Anomaly Investigation</h3>
+              <div class="card-subtitle">Deloitte Job Simulation (Forage) | SQL | Relational DBs | 07/2026</div>
+              <ul class="card-bullet-list">
+                <li>Conducted forensic data analysis on multi-table relational databases to identify transaction anomalies, fraudulent patterns, and data discrepancies.</li>
+                <li>Formulated complex SQL queries utilizing multi-table joins, subqueries, and window functions to extract complete audit trails and validate data integrity.</li>
+                <li>Synthesized quantitative findings into structured executive summaries and analytical risk dashboards for stakeholder reporting.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">SQL</span><span class="tag">Forensic Tech</span><span class="tag">Data Analytics</span><span class="tag">Audit Trails</span><span class="tag">Deloitte</span>
+              </div>
+              <div class="card-actions">
+                <a href="Deloitte-Data_Analytics.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Completion Certificate</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Credentials -->
+      <section class="block" id="certifications">
+        <div class="section-header reveal">
+          <div class="eyebrow">// 04 credentials</div>
+          <h2 class="section-title"><i class="fa-solid fa-award"></i> Verified Credentials & Badges</h2>
+          <p class="section-desc">Digital badges and verified certificates issued by Cisco, IBM, Deloitte, and McKinsey.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="cert-card reveal">
+            <img src="Python_Essentials_1.png" alt="Cisco Python Essentials 1 badge" class="cert-badge-img" loading="lazy">
+            <div class="cert-info">
+              <div class="cert-title">Python Essentials 1</div>
+              <div class="cert-org">Cisco Networking Academy</div>
+              <div class="cert-meta">Completed: Sep 27, 2026 | ID: 2442c6a5</div>
+              <div class="cert-actions">
+                <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> View on Credly</a>
+                <a href="Cisco-Python_Essentials_1.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card reveal">
+            <img src="Introduction_to_Cybersecurity.png" alt="Cisco Introduction to Cybersecurity badge" class="cert-badge-img" loading="lazy">
+            <div class="cert-info">
+              <div class="cert-title">Introduction to Cybersecurity</div>
+              <div class="cert-org">Cisco Networking Academy</div>
+              <div class="cert-meta">Completed: Sep 27, 2026 | ID: a1bbe3a8</div>
+              <div class="cert-actions">
+                <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> View on Credly</a>
+                <a href="Cisco-Introduction_to_Cyber_Security.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card reveal">
+            <img src="Artificial_Intelligence.png" alt="IBM Getting Started with AI badge" class="cert-badge-img" loading="lazy">
+            <div class="cert-info">
+              <div class="cert-title">Getting Started with Artificial Intelligence</div>
+              <div class="cert-org">IBM SkillsBuild</div>
+              <div class="cert-meta">Issued: Mar 25, 2026 | Credly Verified</div>
+              <div class="cert-actions">
+                <a href="https://www.credly.com/badges/218a9e93-1ddf-4cfe-b744-b2f28e6d1f36" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify on Credly</a>
+                <a href="IBM-Artificial_Intelligence.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card reveal">
+            <div class="cert-icon"><i class="fa-solid fa-database"></i></div>
+            <div class="cert-info">
+              <div class="cert-title">SQL and Relational Databases 101</div>
+              <div class="cert-org">IBM Skills Network / Cognitive Class</div>
+              <div class="cert-meta">Issued: Sep 27, 2026 | Course ID: DB0101EN</div>
+              <div class="cert-actions">
+                <a href="https://courses.cognitiveclass.ai/certificates/f79a2dfa5b5f40d2afdbbba472500080" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-check-double"></i> Verify Online</a>
+                <a href="IBM-SQL%20%26%20Relational_Databases_101.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card reveal">
+            <div class="cert-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="cert-info">
+              <div class="cert-title">Data Analytics & Forensic Technology</div>
+              <div class="cert-org">Deloitte (Forage virtual experience)</div>
+              <div class="cert-meta">Completed: July 11, 2026 | Code: CSTxbX8aP3vLKhFxd</div>
+              <div class="cert-actions">
+                <a href="Deloitte-Data_Analytics.pdf" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pdf"></i> Certificate PDF</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card reveal">
+            <div class="cert-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="cert-info">
+              <div class="cert-title">McKinsey Forward Program</div>
+              <div class="cert-org">McKinsey & Company</div>
+              <div class="cert-meta">Role: Forward Learner | Selected: Sep 2026</div>
+              <div class="cert-actions">
+                <span class="btn btn-secondary btn-sm" aria-disabled="true"><i class="fa-solid fa-user-check"></i> Program Participant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & Leadership -->
+      <section class="block" id="leadership">
+        <div class="section-header reveal">
+          <div class="eyebrow">// 05 education</div>
+          <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Leadership</h2>
+          <p class="section-desc">Academic background, industry exposure, and student organization leadership.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-content">
+              <div class="timeline-role">Bachelor of Engineering in Electronics & Telecommunication Engineering</div>
+              <div class="timeline-org">Bangalore Institute of Technology (BIT), Bengaluru</div>
+              <p class="timeline-text">
+                <strong>CGPA: 7.64 / 10.0</strong> | Expected Graduation: 2027<br>
+                <em>Core Coursework:</em> Embedded Systems, Microcontrollers, IoT Architecture, Analog & Digital Circuits, DBMS, Operating Systems, Signal Processing.<br>
+                <em>Industry Exposure:</em> Attended <strong>electronica India 2026</strong> (BIEC), <strong>IISc Open Day 2026</strong>, and <strong>Bengaluru INDIA NANO 2026</strong>.
+              </p>
+            </div>
+            <div class="timeline-date">2023 - 2027</div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-content">
+              <div class="timeline-role">Departmental Leadership & Coordination</div>
+              <div class="timeline-org">Telecommunication Engineering Department, BIT</div>
+              <p class="timeline-text">
+                Served as <strong>President (TESA)</strong> managing annual departmental student events, sports activities, and gatherings; served as <strong>Student Coordinator</strong> managing logistics and registrations for <strong>INCEPTRA 2026</strong> (Technical Exhibition & Ideathon).
+              </p>
+            </div>
+            <div class="timeline-date">2026 - Present</div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-content">
+              <div class="timeline-role">Pre-University Course (PCMC)</div>
+              <div class="timeline-org">BLDEA's Sri B M Patil PU College, Vijayapur</div>
+              <p class="timeline-text"><strong>PUC Score: 94.3%</strong> | Class X: 90.88%</p>
+            </div>
+            <div class="timeline-date">2021 - 2023</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="block" id="contact">
+        <div class="contact-box reveal">
+          <div class="eyebrow">// 06 contact</div>
+          <h2>Let's build something <span class="grad">together</span></h2>
+          <p>I'm looking for a 6-month engineering internship starting January 2027. If you have a role in embedded, IoT or backend, I'd love to hear from you.</p>
+          <div class="contact-actions">
+            <a href="mailto:prateekkumbar207@gmail.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Email me</a>
+            <button type="button" class="btn btn-secondary" data-copy="prateekkumbar207@gmail.com"><i class="fa-regular fa-copy"></i> Copy email</button>
+            <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="social-links">
-        <a href="https://github.com/PrateekHKumbar" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" title="Credly Badges"><i class="fa-solid fa-award"></i></a>
-        <a href="mailto:prateekkumbar207@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://github.com/PrateekHKumbar" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/Prateek-Kumbar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://www.credly.com/users/prateek-h-kumbar" target="_blank" rel="noopener" aria-label="Credly badges"><i class="fa-solid fa-award"></i></a>
+        <a href="mailto:prateekkumbar207@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
       </div>
-      <p style="color: var(--text-muted); margin-bottom: 0.4rem;">
-        Prateek H Kumbar | +91-9113996868 | prateekkumbar207@gmail.com
-      </p>
-      <p>© 2026 Prateek H Kumbar. Bengaluru, Karnataka, India. Hosted on GitHub Pages.</p>
+      <p>© <span id="year">2026</span> Prateek H Kumbar · Bengaluru, Karnataka, India</p>
     </div>
   </footer>
 
+  <button class="icon-btn to-top" id="to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
